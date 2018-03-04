@@ -34,11 +34,14 @@ function zerujPole {
 }
 
 function wprowadzZnakNaPole {
-	pobierzPole
-	while [ $PLANSZA[$POLE] -eq "1" ] || [ $PLANSZA[$POLE] -eq "2" ]
+	WARUNEK_POBIERANIA=true
+	while $WARUNEK_POBIERANIA
 	do
-		echo "Pole zajete!"
 		pobierzPole
+		echo "${PLANSZA[1]} - $POLE"
+		if [ "${PLANSZA[${POLE}]}" -eq "0" ]; then
+			echo "Pole zajete!! Wybierz inne."
+		fi
 	done
 	PLANSZA[$POLE]=$GRACZ
 }
